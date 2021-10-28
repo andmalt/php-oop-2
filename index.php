@@ -11,8 +11,8 @@ class User{
     /**
      * Create User
      *
-     * @param string $nome
-     * @param integer $eta
+     * @param string $nome is Name
+     * @param integer $eta is Age
      */
     public function __construct($nome,$eta){
         $this->nome = $nome;
@@ -35,17 +35,28 @@ class User{
 
 class Prodotto{
 
-    protected $name;
+    protected $nome;
     protected $prezzo;
+
+   
+    protected function __construct($nome,$prezzo)
+    {
+        $this->nome = $nome;
+        $this->prezzo = $prezzo;
+    }
 }
 
+class NoteBook extends Prodotto{
 
+    protected $categoria = 'informatica';
+    protected $quantity;
 
-
-
-
-
-
+    public function __construct($quantity,$nome,$prezzo)
+    {
+        parent:: __construct($nome,$prezzo);
+        $this->quantity = $quantity;
+    }
+}
 
 
 /**
@@ -69,11 +80,13 @@ class CartaDiCredito {
 
 
 
-$utente = new User('Andrea','33');
+$utente = new User('Andrea',33);
 $carta = new CartaDiCredito('5555444466661111');
+$notebook = new NoteBook(1,'PH Rozzo9',1800);
+
 
 $utente->inserisciCarta($carta);
-
+$utente->inserisciCarrello($notebook);
 
 var_dump($utente);
 
